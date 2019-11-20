@@ -1,25 +1,65 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ventanas;
+import com.mysql.jdbc.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
+import java.sql.*;
+import java.sql.SQLException;
+
 
 /**
  *
  * @author renzo
  */
 public class BuscarProductos extends javax.swing.JFrame {
+    { 
+   initComponents();
+   mostrarTabla();
+} 
+   
+    void mostrarTabla(){
+        DefaultTableModel modelo = new  DefaultTableModel();
+        modelo.addColumn("Id");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Vencimiento");
+        modelo.addColumn("Laboratorio");
+        modelo.addColumn("Cantidad");
+        tabladatos.setModel(modelo);
+        
+        String sql = "SELECT * FROM productos";
+        
+        String datos[] = new String [7];
+        Statement st;
+        try {
+             st = ConexionBD.createStatements(); 
+              ResultSet rs = st.executeQuery(sql);
+              while(rs.next()){
+                  datos[0]=rs.getString(1);
+                  datos[1]=rs.getString(2);
+                  datos[2]=rs.getString(3);
+                  datos[3]=rs.getString(4);
+                  datos[4]=rs.getString(5);
+                  datos[5]=rs.getString(6);
+                  datos[6]=rs.getString(7);
+                  modelo.addRow(datos);
+            
+        }
+              tabladatos.setModel(modelo);
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscarProductos.class.getName()).log(Level.SEVERE, null, ex);
+           
+        }
+         
+    }
     
-    
-
     /**
      * Creates new form BuscarProductos
      */
     public BuscarProductos() {
-        initComponents();
         this.setLocationRelativeTo(null);
     }
 
@@ -41,7 +81,7 @@ public class BuscarProductos extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtComponente = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tabladedatos = new javax.swing.JTable();
+        tabladatos = new javax.swing.JTable();
         txtCodigo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
@@ -74,6 +114,12 @@ public class BuscarProductos extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
         jLabel2.setText("Buscar/Agregar productos al stock");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 520, 50));
+
+        txtNombreDelProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreDelProductoActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtNombreDelProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 270, 40));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 3, 18)); // NOI18N
@@ -94,27 +140,17 @@ public class BuscarProductos extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 150, 30));
         getContentPane().add(txtComponente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 120, 40));
 
-        tabladedatos.setBorder(javax.swing.BorderFactory.createBevelBorder(null));
-        tabladedatos.setFont(new java.awt.Font("Calibri", 3, 12)); // NOI18N
-        tabladedatos.setModel(new javax.swing.table.DefaultTableModel(
+        tabladatos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tabladatos.setFont(new java.awt.Font("Calibri", 3, 12)); // NOI18N
+        tabladatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Actron Rapida Accion", "Ibuprofeno 400mg", "165"},
-                {"2", "Actron Max", "Cafeina anhidra", "200"},
-                {"3", "Actron Pediatrico", "Ibuprofeno", "257"},
-                {"4", "Alplax", "Alprazolamo 0,25mg", "75"},
-                {"5", "Loratadina", "Loratadina 10mg", "100"},
-                {"6", "Loperamida", "Loperamida 2mg", "60"},
-                {"7", "Amoxicilina", "Amoxicilina", "80"},
-                {"8", "Reumosan", "Sobres x30", "70.75"},
-                {"9", "Hamixon C", "Crema x50g", "250"},
-                {"10", "Perfume X", "50ml", "200"},
-                {"11", "Crema de manos", "50gr", "120"}
+
             },
             new String [] {
-                "Codigo", "Nombre", "Componente", "Precio"
+
             }
         ));
-        jScrollPane2.setViewportView(tabladedatos);
+        jScrollPane2.setViewportView(tabladatos);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, 550, 200));
         getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 120, 40));
@@ -137,7 +173,7 @@ public class BuscarProductos extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
     
      
-     DefaultTableModel modelo = (DefaultTableModel) tabladedatos.getModel();
+     DefaultTableModel modelo = (DefaultTableModel) tabladatos.getModel();
 
 
     Object [] fila=new Object[4];
@@ -150,7 +186,7 @@ public class BuscarProductos extends javax.swing.JFrame {
         modelo.addRow(fila);
 
 
-        tabladedatos.setModel(modelo);
+        tabladatos.setModel(modelo);
    
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -162,10 +198,10 @@ public class BuscarProductos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     
-      DefaultTableModel model = (DefaultTableModel) tabladedatos.getModel();
+      DefaultTableModel model = (DefaultTableModel) tabladatos.getModel();
       
       //Condicion para verificar si se ha seleccionado o no una fila
-      int a = tabladedatos.getSelectedRow();
+      int a = tabladatos.getSelectedRow();
       
        if (a<0){ 
  
@@ -189,6 +225,10 @@ public class BuscarProductos extends javax.swing.JFrame {
            }
        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtNombreDelProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreDelProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreDelProductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,10 +276,14 @@ public class BuscarProductos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tabladedatos;
+    private javax.swing.JTable tabladatos;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtComponente;
     private javax.swing.JTextField txtNombreDelProducto;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
+
+    
+
+    
 }

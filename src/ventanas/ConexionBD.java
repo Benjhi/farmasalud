@@ -12,6 +12,11 @@ import java.sql.*;
  * @author renzo
  */
 public class ConexionBD {
+
+    static com.mysql.jdbc.Statement createStatements() {
+        return null;
+        
+    }
     Connection cn;
     
     public Connection conexion(){

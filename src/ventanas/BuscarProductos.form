@@ -75,6 +75,9 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombreDelProducto">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreDelProductoActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="200" y="190" width="270" height="40"/>
@@ -142,7 +145,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tabladedatos">
+        <Component class="javax.swing.JTable" name="tabladatos">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -153,84 +156,10 @@
               <Font name="Calibri" size="12" style="3"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="11">
-                <Column editable="true" title="Codigo" type="java.lang.Object">
-                  <Data value="1"/>
-                  <Data value="2"/>
-                  <Data value="3"/>
-                  <Data value="4"/>
-                  <Data value="5"/>
-                  <Data value="6"/>
-                  <Data value="7"/>
-                  <Data value="8"/>
-                  <Data value="9"/>
-                  <Data value="10"/>
-                  <Data value="11"/>
-                </Column>
-                <Column editable="true" title="Nombre" type="java.lang.Object">
-                  <Data value="Actron Rapida Accion"/>
-                  <Data value="Actron Max"/>
-                  <Data value="Actron Pediatrico"/>
-                  <Data value="Alplax"/>
-                  <Data value="Loratadina"/>
-                  <Data value="Loperamida"/>
-                  <Data value="Amoxicilina"/>
-                  <Data value="Reumosan"/>
-                  <Data value="Hamixon C"/>
-                  <Data value="Perfume X"/>
-                  <Data value="Crema de manos"/>
-                </Column>
-                <Column editable="true" title="Componente" type="java.lang.Object">
-                  <Data value="Ibuprofeno 400mg"/>
-                  <Data value="Cafeina anhidra"/>
-                  <Data value="Ibuprofeno"/>
-                  <Data value="Alprazolamo 0,25mg"/>
-                  <Data value="Loratadina 10mg"/>
-                  <Data value="Loperamida 2mg"/>
-                  <Data value="Amoxicilina"/>
-                  <Data value="Sobres x30"/>
-                  <Data value="Crema x50g"/>
-                  <Data value="50ml"/>
-                  <Data value="50gr"/>
-                </Column>
-                <Column editable="true" title="Precio" type="java.lang.Object">
-                  <Data value="165"/>
-                  <Data value="200"/>
-                  <Data value="257"/>
-                  <Data value="75"/>
-                  <Data value="100"/>
-                  <Data value="60"/>
-                  <Data value="80"/>
-                  <Data value="70.75"/>
-                  <Data value="250"/>
-                  <Data value="200"/>
-                  <Data value="120"/>
-                </Column>
-              </Table>
+              <Table columnCount="0" rowCount="0"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-              <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-              </TableColumnModel>
+              <TableColumnModel selectionModel="0"/>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
