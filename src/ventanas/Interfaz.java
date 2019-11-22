@@ -7,6 +7,7 @@ package ventanas;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,8 +40,8 @@ public class Interfaz extends javax.swing.JFrame {
         jButtonSALIR = new javax.swing.JButton();
         jlbUSUARIO = new javax.swing.JLabel();
         jlbCONTRASEÑA = new javax.swing.JLabel();
-        jTextFielduser = new javax.swing.JTextField();
-        jPasswordFieldpassword = new javax.swing.JPasswordField();
+        usuario = new javax.swing.JTextField();
+        contraseña = new javax.swing.JPasswordField();
         jButtonsesion = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -67,11 +68,21 @@ public class Interfaz extends javax.swing.JFrame {
         jlbCONTRASEÑA.setText("Contraseña");
         getContentPane().add(jlbCONTRASEÑA, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, -1, -1));
 
-        jTextFielduser.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-        getContentPane().add(jTextFielduser, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 470, 160, 30));
+        usuario.setFont(new java.awt.Font("Calibri", 3, 18)); // NOI18N
+        usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 470, 160, 30));
 
-        jPasswordFieldpassword.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-        getContentPane().add(jPasswordFieldpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, 160, 30));
+        contraseña.setFont(new java.awt.Font("Calibri", 3, 18)); // NOI18N
+        contraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contraseñaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, 160, 30));
 
         jButtonsesion.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
         jButtonsesion.setText("Iniciar Sesion");
@@ -96,10 +107,27 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSALIRActionPerformed
 
     private void jButtonsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonsesionActionPerformed
-    new MenuPrincipal().setVisible(true); 
-    this.setVisible(false); 
-    new MenuPrincipal().setVisible(true); // TODO add your handling code here:
+    String user = usuario.getText();
+    String pass = contraseña.getText();
+    
+    if(user.equals("Usuario") && pass.equals("12345")){
+        MenuPrincipal pp = new MenuPrincipal();
+        pp.setVisible(true);
+        this.dispose();
+    }
+    else{
+        JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrecta");
+    }
+       
     }//GEN-LAST:event_jButtonsesionActionPerformed
+
+    private void usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usuarioActionPerformed
+
+    private void contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contraseñaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,13 +165,13 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField contraseña;
     private javax.swing.JButton jButtonSALIR;
     private javax.swing.JButton jButtonsesion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPasswordField jPasswordFieldpassword;
-    private javax.swing.JTextField jTextFielduser;
     private javax.swing.JLabel jlbCONTRASEÑA;
     private javax.swing.JLabel jlbUSUARIO;
+    private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }

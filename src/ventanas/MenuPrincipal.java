@@ -81,9 +81,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel4.setText("Registrar venta");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 78, 157, 29));
 
-        jLabel5.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Calibri", 3, 36)); // NOI18N
         jLabel5.setText("Bienvenido al sistema FarmaSalud");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 420, 70));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 530, 70));
 
         jButton4.setFont(new java.awt.Font("Calibri", 3, 14)); // NOI18N
         jButton4.setText("Salir");
@@ -101,7 +101,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    new ConsultarVentasRealizadas().setVisible(true);         // TODO add your handling code here:
+    new ConsultarVentasRealizadas().setVisible(true); 
+    dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -116,11 +117,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    new BuscarProductos().setVisible(true);         // TODO add your handling code here:
+    new BuscarProductos().setVisible(true);  
+    dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    new RegistrarVenta().setVisible(true);         // TODO add your handling code here:
+    new RegistrarVenta().setVisible(true);  
+    dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
