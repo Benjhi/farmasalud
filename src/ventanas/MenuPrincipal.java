@@ -74,11 +74,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 210, 29));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 3, 18)); // NOI18N
-        jLabel3.setText("Consultar ventas realizadas");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 385, -1, 29));
+        jLabel3.setText("Información útil");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 385, 150, 29));
 
         jLabel4.setFont(new java.awt.Font("Calibri", 3, 18)); // NOI18N
-        jLabel4.setText("Registrar venta");
+        jLabel4.setText("Realizar pedido");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 78, 157, 29));
 
         jLabel5.setFont(new java.awt.Font("Calibri", 3, 36)); // NOI18N
@@ -101,7 +101,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    new ConsultarVentasRealizadas().setVisible(true); 
+    new Informacion().setVisible(true); 
     dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -122,7 +122,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    new RegistrarVenta().setVisible(true);  
+    new RealizarPedido().setVisible(true);  
     dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
