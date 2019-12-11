@@ -24,7 +24,8 @@ public class ConexionBD {
         try {
         
         Class.forName("com.mysql.jdbc.Driver");
-        cn = DriverManager.getConnection("jdbc:mysql://localhost/farmasalud","root","");
+
+        cn = DriverManager.getConnection("jdbc:mysql://localhost/farmasalud","root","123456789");
         System.out.println("Se la conexion exitosamente");
         
         
