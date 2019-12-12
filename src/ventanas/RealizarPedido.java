@@ -21,6 +21,13 @@ public class RealizarPedido extends javax.swing.JFrame{
         initComponents();
         this.setLocationRelativeTo(null);
         mostrarTabla("");
+        agregarItem();
+    }
+    
+    void agregarItem(){
+        
+        combo.addItem("Sucursal");
+        combo.addItem("Encargado");
     }
     
     void mostrarTabla(String valor){
@@ -64,6 +71,7 @@ public class RealizarPedido extends javax.swing.JFrame{
         }
          
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,7 +97,11 @@ public class RealizarPedido extends javax.swing.JFrame{
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        buscar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        combo = new javax.swing.JComboBox<>();
+        jButton4 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -178,10 +190,44 @@ public class RealizarPedido extends javax.swing.JFrame{
         jLabel5.setText("Encargado");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
 
+        buscar.setFont(new java.awt.Font("Calibri", 3, 12)); // NOI18N
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 120, 130, 30));
+
         jLabel1.setFont(new java.awt.Font("Calibri", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 51));
         jLabel1.setText("Nombre");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 90, 40));
+
+        combo.setFont(new java.awt.Font("Calibri", 3, 12)); // NOI18N
+        combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboActionPerformed(evt);
+            }
+        });
+        getContentPane().add(combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, 100, 30));
+
+        jButton4.setFont(new java.awt.Font("Calibri", 3, 12)); // NOI18N
+        jButton4.setText("Mostrar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 120, 80, 30));
+
+        jButton2.setFont(new java.awt.Font("Calibri", 3, 12)); // NOI18N
+        jButton2.setText("Buscar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 120, 90, 30));
 
         jLfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo3.jpg"))); // NOI18N
         getContentPane().add(jLfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 994, 562));
@@ -243,6 +289,22 @@ public class RealizarPedido extends javax.swing.JFrame{
    
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+       
+    }//GEN-LAST:event_buscarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        atributo=combo.getSelectedItem().toString(); mostrarTabla(buscar.getText());   
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       mostrarTabla("");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -280,8 +342,12 @@ public class RealizarPedido extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField buscar;
+    private javax.swing.JComboBox<String> combo;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLFactura;
     private javax.swing.JLabel jLabel1;

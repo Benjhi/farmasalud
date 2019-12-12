@@ -4,16 +4,22 @@
  * and open the template in the editor.
  */
 package ventanas;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import javax.swing.RowFilter;
-import javax.swing.table.TableRowSorter;
+import com.mysql.jdbc.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+import java.sql.*;
+import java.sql.SQLException;
 
 /**
  *
  * @author renzo
  */
 public class Informacion extends javax.swing.JFrame {
+    
+    ConexionBD con = new ConexionBD();
+    Connection cn = con.conexion();
     
     
 
@@ -23,7 +29,39 @@ public class Informacion extends javax.swing.JFrame {
     public Informacion() {
         initComponents();
         this.setLocationRelativeTo(null); 
+        mostrartabla();
     }
+    
+     void mostrartabla(){
+        DefaultTableModel modelo = new  DefaultTableModel();
+        modelo.addColumn("Nombre Sucursal");
+        modelo.addColumn("Dirección");
+        modelo.addColumn("Teléfono");
+        modelo.addColumn("Encargado");
+        tabladatos.setModel(modelo);
+        
+        String sql = "SELECT * FROM sucursales";
+        
+        String datos[] = new String [4];
+        Statement st;
+        try {
+            st= (com.mysql.jdbc.Statement) cn.createStatement(); 
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                datos[2]=rs.getString(3);
+                datos[3]=rs.getString(4);
+                modelo.addRow(datos);
+            }
+            tabladatos.setModel(modelo);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Informacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+    }
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,7 +72,9 @@ public class Informacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabladatos = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -42,9 +82,25 @@ public class Informacion extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
-        jButton1.setText("Sucursales");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 160, 60));
+        jLabel2.setFont(new java.awt.Font("Calibri", 3, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel2.setText("Información de sucursales");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 430, 70));
+
+        tabladatos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tabladatos);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 820, 290));
 
         jButton2.setFont(new java.awt.Font("Calibri", 3, 14)); // NOI18N
         jButton2.setText("Volver");
@@ -68,8 +124,10 @@ public class Informacion extends javax.swing.JFrame {
 
      
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabladatos;
     // End of variables declaration//GEN-END:variables
 }
