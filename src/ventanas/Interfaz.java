@@ -5,8 +5,10 @@
  */
 package ventanas;
 
+import com.mysql.jdbc.Statement;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,38 +16,50 @@ import javax.swing.JOptionPane;
  * @author renzo
  */
 public class Interfaz extends javax.swing.JFrame {
-    String Nombre;
-    String Contraseña;
+   
+    ConexionBD con = new ConexionBD();
+    Connection cn = con.conexion();
     
-    Usuario usr=new Usuario();
-    Interfaz ev=new Interfaz();
-
-    public String getNombre() {
-        return Nombre;
-    }
-
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
-    }
-
-    public String getContraseña() {
-        return Contraseña;
-    }
-
-    public void setContraseña(String Contraseña) {
-        this.Contraseña = Contraseña;
-    }
-    
-    
-
-    /**
-     * Creates new form Interfaz
-     */
+   
     public Interfaz() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
     
+    public void validarAcceso(){
+        
+        int resultado=0;
+        
+        try{
+            String usuario=txtusuario.getText();
+            String contraseña=String.valueOf(txtcontraseña.getPassword());
+            
+            String sql="SELECT * FROM usuarios where nombre='"+nombre"' and contraseña='"+contraseña"'";
+            
+            Statement cn=con.createStatement();
+            ResultSet rs=st.executeQuery(sql);
+            
+            if(rs.next()){
+                
+                resultado=1;
+                
+                if(resultado==1){
+                    
+                    MenuPrincipal form=new MenuPrincipal();
+                    form.setVisible(true);
+                    this.dispose();
+                }else{
+                    
+                    JOptionPane.showMessageDialog(null,"Datos invalidos");
+                }
+        
+    } catch (Exception e){
+            
+                    JOptionPane.showMessageDialog(null,"Datos invalidos" + e.getmessage());
+        
+    } 
+        }
+    }
     public Image getIconImage(){
        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/farmasaludicono.png"));
        return retValue;
@@ -63,8 +77,8 @@ public class Interfaz extends javax.swing.JFrame {
         jButtonSALIR = new javax.swing.JButton();
         jlbUSUARIO = new javax.swing.JLabel();
         jlbCONTRASEÑA = new javax.swing.JLabel();
-        usuario = new javax.swing.JTextField();
-        contraseña = new javax.swing.JPasswordField();
+        txtusuario = new javax.swing.JTextField();
+        txtcontraseña = new javax.swing.JPasswordField();
         jButtonsesion = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -91,21 +105,21 @@ public class Interfaz extends javax.swing.JFrame {
         jlbCONTRASEÑA.setText("Contraseña");
         getContentPane().add(jlbCONTRASEÑA, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, -1, -1));
 
-        usuario.setFont(new java.awt.Font("Calibri", 3, 18)); // NOI18N
-        usuario.addActionListener(new java.awt.event.ActionListener() {
+        txtusuario.setFont(new java.awt.Font("Calibri", 3, 18)); // NOI18N
+        txtusuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuarioActionPerformed(evt);
+                txtusuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 470, 160, 30));
+        getContentPane().add(txtusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 470, 160, 30));
 
-        contraseña.setFont(new java.awt.Font("Calibri", 3, 18)); // NOI18N
-        contraseña.addActionListener(new java.awt.event.ActionListener() {
+        txtcontraseña.setFont(new java.awt.Font("Calibri", 3, 18)); // NOI18N
+        txtcontraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contraseñaActionPerformed(evt);
+                txtcontraseñaActionPerformed(evt);
             }
         });
-        getContentPane().add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, 160, 30));
+        getContentPane().add(txtcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, 160, 30));
 
         jButtonsesion.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
         jButtonsesion.setText("Iniciar Sesion");
@@ -130,78 +144,32 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSALIRActionPerformed
 
     private void jButtonsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonsesionActionPerformed
-        validar();
+        AgregarUsuario();        
     }
        
     }//GEN-LAST:event_jButtonsesionActionPerformed
-public void validar(){
-        String Nombre=txtusuario.getText();
-        String Contraseña=txtcontraseña.getText();
-        if(txtusuario.getText().equals("") | |txtcontraseña.getText().equals("")){
-              JoptionPane.showMessageDialog(this, "Debe Ingresar sus datos");
+
+     
+    private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtusuarioActionPerformed
+
+    private void txtcontraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcontraseñaActionPerformed
+
    
-        }else{
-              ev=usr.ValidarUsuario(Nombre, Contraseña);
-              if (ev.getNombre() != null && ev.getContraseña() != null){
-              MenuPrincipal p = new MenuPrincipal();
-              p.setVisible(true);
-              dispose();
-        }else{
-              JOptionPane.showMessageDialog(this, "Datos invalidos");
-              txt.usuario.requestFocus();
-        }
-        }
-    private void usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usuarioActionPerformed
-
-    private void contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseñaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_contraseñaActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Interfaz().setVisible(true);
-            }
-        });
+     
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField contraseña;
     private javax.swing.JButton jButtonSALIR;
     private javax.swing.JButton jButtonsesion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jlbCONTRASEÑA;
     private javax.swing.JLabel jlbUSUARIO;
-    private javax.swing.JTextField usuario;
+    private javax.swing.JPasswordField txtcontraseña;
+    private javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
 }
