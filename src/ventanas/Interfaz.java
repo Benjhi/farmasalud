@@ -14,6 +14,29 @@ import javax.swing.JOptionPane;
  * @author renzo
  */
 public class Interfaz extends javax.swing.JFrame {
+    String Nombre;
+    String Contraseña;
+    
+    Usuario usr=new Usuario();
+    Interfaz ev=new Interfaz();
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    public String getContraseña() {
+        return Contraseña;
+    }
+
+    public void setContraseña(String Contraseña) {
+        this.Contraseña = Contraseña;
+    }
+    
+    
 
     /**
      * Creates new form Interfaz
@@ -107,20 +130,27 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSALIRActionPerformed
 
     private void jButtonsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonsesionActionPerformed
-    String user = usuario.getText();
-    String pass = contraseña.getText();
-    
-    if(user.equals("Usuario") && pass.equals("12345")){
-        MenuPrincipal pp = new MenuPrincipal();
-        pp.setVisible(true);
-        this.dispose();
-    }
-    else{
-        JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrecta");
+        validar();
     }
        
     }//GEN-LAST:event_jButtonsesionActionPerformed
-
+public void validar(){
+        String Nombre=txtusuario.getText();
+        String Contraseña=txtcontraseña.getText();
+        if(txtusuario.getText().equals("") | |txtcontraseña.getText().equals("")){
+              JoptionPane.showMessageDialog(this, "Debe Ingresar sus datos");
+   
+        }else{
+              ev=usr.ValidarUsuario(Nombre, Contraseña);
+              if (ev.getNombre() != null && ev.getContraseña() != null){
+              MenuPrincipal p = new MenuPrincipal();
+              p.setVisible(true);
+              dispose();
+        }else{
+              JOptionPane.showMessageDialog(this, "Datos invalidos");
+              txt.usuario.requestFocus();
+        }
+        }
     private void usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usuarioActionPerformed
